@@ -14,6 +14,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
+import firestore from '@react-native-firebase/firestore';
 
 type InputProps = {
   title: string;
@@ -38,7 +39,23 @@ export const CreatePostForm = () => {
   const [image, setImage] = useState<string>('');
 
   const handleSubmitForm = (data: InputProps) => {
-    Alert.alert('Dados', `Titulo: ${data.title} \nMensagem: ${data.body}`);
+    // if (image) {
+
+    // } else {
+    //   Alert.alert('Imagem obrigatória', 'Escolha uma imagem!');
+    // }
+
+    firestore()
+      .collection('blogs')
+      .add({
+        title: data.title,
+        message: data.body,
+        image: 'https://github.com/Icode-Mobile.png',
+      })
+      .then(() => {
+        Alert.alert('Post Criado', 'Seu post foi enviado com sucesso!');
+        goBack();
+      });
   };
 
   const handleOpenCameraLibrary = async () => {

@@ -24,13 +24,27 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#295094"
-      }
+      },
+      "permissions": ["android.permission.RECORD_AUDIO"],
+      "package": "com.icode_mobile.noticias",
+      "googleServicesFile": "./google-services.json"
     },
     "plugins": [
       [
         "expo-image-picker",
         {
           "photosPermission": "O aplicativo precisa acessar suas fotos e camera"
+        }
+      ],
+      "@react-native-firebase/app",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33,
+            "buildToolsVersion": "33.0.0"
+          }
         }
       ]
     ]

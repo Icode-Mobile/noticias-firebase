@@ -19,5 +19,5 @@ declare global {
 }
 
 export default function RouteRoot() {
-  return <AppRoute />;
+  return <AuthRoute />;
 }

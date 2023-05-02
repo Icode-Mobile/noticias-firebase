@@ -3,14 +3,14 @@ import { useNavigation } from '@react-navigation/native';
 
 interface PostProps {
   item: {
-    id: string;
     title: string;
-    body: string;
+    message: string;
     image: string;
   };
+  id: string;
 }
 
-export const Post = ({ item }: PostProps) => {
+export const Post = ({ item, id }: PostProps) => {
   const { navigate } = useNavigation();
 
   const handleActionPost = () => {
@@ -21,13 +21,13 @@ export const Post = ({ item }: PostProps) => {
       },
       {
         text: 'Remover',
-        onPress: () => handleRemovePost(item.id),
+        onPress: () => handleRemovePost(id),
       },
       {
         text: 'Atualizar',
         onPress: () =>
           navigate('UpdatePost', {
-            id: item.id,
+            id: id,
           }),
       },
     ]);
@@ -40,7 +40,7 @@ export const Post = ({ item }: PostProps) => {
 
   const handleDetailsPost = () => {
     navigate('DetailsPost', {
-      id: item.id,
+      id: id,
     });
   };
 
@@ -67,6 +67,7 @@ export const Post = ({ item }: PostProps) => {
           width: '100%',
           height: 130,
         }}
+        resizeMode='contain'
       />
       <Text
         style={{
@@ -90,7 +91,7 @@ export const Post = ({ item }: PostProps) => {
           paddingBottom: 10,
         }}
       >
-        {item.body.substring(0, 255) + '...'}
+        {item.message.substring(0, 255) + '...'}
         <Text
           style={{
             fontFamily: 'Rubik_500Medium',
