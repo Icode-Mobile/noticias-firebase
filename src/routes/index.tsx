@@ -1,6 +1,8 @@
 import AppRoute from './app.routes';
 import AuthRoute from './auth.routes';
 
+import { useAuth } from '../context';
+
 declare global {
   namespace ReactNavigation {
     interface RootParamList {
@@ -19,5 +21,7 @@ declare global {
 }
 
 export default function RouteRoot() {
-  return <AuthRoute />;
+  const { isAuthenticated } = useAuth();
+
+  return isAuthenticated ? <AuthRoute /> : <AppRoute />;
 }

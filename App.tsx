@@ -12,8 +12,10 @@ import {
   Rubik_600SemiBold,
   Rubik_700Bold,
 } from '@expo-google-fonts/rubik';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 import RouteRoot from './src/routes';
+import { AuthProvider } from './src/context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,6 +23,11 @@ LogBox.ignoreAllLogs();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
+
+  GoogleSignin.configure({
+    webClientId:
+      '981402118683-b9qsmfc4at757qhdingav0s380ghrjn7.apps.googleusercontent.com',
+  });
 
   useEffect(() => {
     async function prepare() {
@@ -55,7 +62,9 @@ export default function App() {
 
   return (
     <NavigationContainer onReady={onLayoutRootView}>
-      <RouteRoot />
+      <AuthProvider>
+        <RouteRoot />
+      </AuthProvider>
     </NavigationContainer>
   );
 }

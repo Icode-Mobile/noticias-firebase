@@ -16,7 +16,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#295094"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -25,7 +27,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#295094"
       },
-      "permissions": ["android.permission.RECORD_AUDIO"],
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
       "package": "com.icode_mobile.noticias",
       "googleServicesFile": "./google-services.json"
     },
@@ -37,6 +41,7 @@
         }
       ],
       "@react-native-firebase/app",
+      "@react-native-google-signin/google-signin",
       [
         "expo-build-properties",
         {
@@ -47,6 +52,11 @@
           }
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e660ae96-1e5a-456f-8281-d9e3e00317e6"
+      }
+    }
   }
 }

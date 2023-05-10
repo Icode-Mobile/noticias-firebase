@@ -8,6 +8,8 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native';
 
+import { useAuth } from '../../context/index';
+
 type InputProps = {
   email: string;
   password: string;
@@ -31,12 +33,13 @@ export const LoginForm = () => {
     resolver: yupResolver(schema),
   });
   const { navigate } = useNavigation();
+  const { AuthGoogle, AuthEmailPassword } = useAuth();
 
   const handleSubmitForm = (data: InputProps) => {
-    Alert.alert(
-      'Credenciais',
-      `Email: ${data.email} \nSenha: ${data.password}`
-    );
+    AuthEmailPassword({
+      email: data.email,
+      password: data.password,
+    });
   };
 
   const handleSignup = () => {
@@ -230,6 +233,7 @@ export const LoginForm = () => {
           }}
         >
           <TouchableOpacity
+            onPress={AuthGoogle}
             style={{
               backgroundColor: '#fff',
               width: 80,

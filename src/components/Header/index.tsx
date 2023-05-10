@@ -1,7 +1,10 @@
 import { View, Text, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '../../context';
 
 export const Header = () => {
+  const { user } = useAuth();
+
   return (
     <View
       style={{
@@ -14,7 +17,7 @@ export const Header = () => {
     >
       <Image
         source={{
-          uri: 'https://github.com/Icode-Mobile.png',
+          uri: user ? user.photo : '',
         }}
         style={{
           width: 35,
